@@ -103,7 +103,7 @@ export default {
 		})
 
 		onMounted(() => {
-			axios.get('http://localhost:8000/api/jadwalUmum')
+			axios.get('http://192.168.1.32:8000/api/jadwalUmum')
 				.then(response => {
 					jadwal_umum.value = response.data.data;
 				})
@@ -114,7 +114,7 @@ export default {
 		})
 
 		function jadwalUmumDelete(id_jadwal_umum) {
-			axios.delete(`http://localhost:8000/api/jadwalUmum/${id_jadwal_umum}`)
+			axios.delete(`http://192.168.1.32:8000/api/jadwalUmum/${id_jadwal_umum}`)
 				.then(() => {
 					toast.error("Berhasil Hapus Jadwal Umum !", {
 						timeout: 2000

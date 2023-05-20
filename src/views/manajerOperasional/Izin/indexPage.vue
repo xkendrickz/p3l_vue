@@ -77,7 +77,7 @@ export default {
 
 
 		onMounted(() => {
-			axios.get('http://localhost:8000/api/izin')
+			axios.get('http://192.168.1.32:8000/api/izin')
 				.then(response => {
 					izin.value = response.data.data
 					console.log('response', izin.value);
@@ -87,7 +87,7 @@ export default {
 		})
 
 		onMounted(() => {
-			axios.get('http://localhost:8000/api/izin')
+			axios.get('http://192.168.1.32:8000/api/izin')
 				.then(response => {
 					izin.value = response.data.data
 					console.log('response', izin.value);
@@ -98,7 +98,7 @@ export default {
 
 		//method delete
 		function KonfirmasiIzin(id_izin) {
-			axios.put(`http://localhost:8000/api/izin/${id_izin}`)
+			axios.put(`http://192.168.1.32:8000/api/izin/${id_izin}`)
 				.then(() => {
 					toast.error("Berhasil Hapus Izin !", {
 						timeout: 2000

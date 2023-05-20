@@ -78,7 +78,7 @@ export default {
 		})
 
 		onMounted(() => {
-			axios.get('http://localhost:8000/api/member')
+			axios.get('http://192.168.1.32:8000/api/member')
 				.then(response => {
 					member.value = response.data.data
 					console.log('response', member.value);
@@ -110,7 +110,7 @@ export default {
 		}
 
 		function generatePDF(id_member) {
-			axios.get(`http://localhost:8000/api/member/${id_member}`)
+			axios.get(`http://192.168.1.32:8000/api/member/${id_member}`)
 				.then((response) => {
 					members.push(response.data.data);
 					if (members.length > 0) {

@@ -54,7 +54,7 @@ export default {
 		let members = ref([])
 		onMounted(() => {
 			//get API from Laravel Backend
-			axios.get('http://localhost:8000/api/member')
+			axios.get('http://192.168.1.32:8000/api/member')
 				.then(response => {
 					//assign state posts with response data
 					members.value = response.data.data
@@ -66,7 +66,7 @@ export default {
 		let pegawais = ref([])
 		onMounted(() => {
 			//get API from Laravel Backend
-			axios.get('http://localhost:8000/api/pegawai')
+			axios.get('http://192.168.1.32:8000/api/pegawai')
 				.then(response => {
 					//assign state posts with response data
 					pegawais.value = response.data.data
@@ -87,13 +87,13 @@ export default {
 			let id_pegawai = aktivasi.id_pegawai
 			let toast = useToast();
 
-			axios.post("http://localhost:8000/api/aktivasi", {
+			axios.post("http://192.168.1.32:8000/api/aktivasi", {
 				id_member: id_member,
 				id_pegawai: id_pegawai
 			}).then((response) => {
 				console.log(response)
 				let id_aktivasi = response.data.data.id_aktivasi;
-				axios.get(`http://localhost:8000/api/aktivasi/${id_aktivasi}`)
+				axios.get(`http://192.168.1.32:8000/api/aktivasi/${id_aktivasi}`)
 					.then((response) => {
 						aktivasis.push(response.data.data);
 						if (aktivasis.length > 0) {

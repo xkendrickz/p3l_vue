@@ -77,7 +77,7 @@ export default {
 		let members = ref([])
 		onMounted(() => {
 			//get API from Laravel Backend
-			axios.get('http://localhost:8000/api/member')
+			axios.get('http://192.168.1.32:8000/api/member')
 				.then(response => {
 					//assign state posts with response data
 					members.value = response.data.data
@@ -89,7 +89,7 @@ export default {
 		let pegawais = ref([])
 		onMounted(() => {
 			//get API from Laravel Backend
-			axios.get('http://localhost:8000/api/pegawai')
+			axios.get('http://192.168.1.32:8000/api/pegawai')
 				.then(response => {
 					//assign state posts with response data
 					pegawais.value = response.data.data
@@ -101,7 +101,7 @@ export default {
 		let kelass = ref([])
 		onMounted(() => {
 			//get API from Laravel Backend
-			axios.get('http://localhost:8000/api/kelas')
+			axios.get('http://192.168.1.32:8000/api/kelas')
 				.then(response => {
 					//assign state posts with response data
 					kelass.value = response.data.data
@@ -124,7 +124,7 @@ export default {
 			let deposit = depositKelas.deposit
 			let toast = useToast();
 
-			axios.post("http://localhost:8000/api/depositKelas", {
+			axios.post("http://192.168.1.32:8000/api/depositKelas", {
 				id_member: id_member,
 				id_pegawai: id_pegawai,
 				id_kelas: id_kelas,
@@ -133,7 +133,7 @@ export default {
 				.then((response) => {
 					console.log()
 					let id_deposit = response.data.data.id_deposit_paket;
-					axios.get(`http://localhost:8000/api/depositReguler/${id_deposit}`)
+					axios.get(`http://192.168.1.32:8000/api/depositReguler/${id_deposit}`)
 						.then((response) => {
 							depositKelass.push(response.data.data);
 							if (depositKelass.length > 0) {

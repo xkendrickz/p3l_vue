@@ -49,7 +49,7 @@ export default {
 
 		onMounted(() => {
 
-			axios.get(`http://localhost:8000/api/jadwalHarian/${id}`)
+			axios.get(`http://192.168.1.32:8000/api/jadwalHarian/${id}`)
 				.then(response => {
 					console.log(response.data)
 					jadwal_harian.status = response.data.data[0].status
@@ -63,7 +63,7 @@ export default {
 			let status = jadwal_harian.status;
 
 			let toast = useToast();
-			axios.put(`http://localhost:8000/api/jadwalHarian/${id}`, {
+			axios.put(`http://192.168.1.32:8000/api/jadwalHarian/${id}`, {
 				status: status
 			})
 				.then(() => {

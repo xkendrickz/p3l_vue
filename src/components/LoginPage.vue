@@ -91,38 +91,26 @@ export default {
 			//send server with axios
 			let username = pegawai.username
 			let password = pegawai.password
-			axios
-				.get('http://192.168.1.24/Server_Go_Fit/public/pegawai/' + username + "/" + password)
-				.then((response) => {
-
-					if (response && response.data && response.data.data) {
-						toast.success("Berhasil Login !", {
-							timeout: 2000
-						})
-						let data = response.data.data; // Access 'data' field in response
-
-						// Check if 'data' is an object
-						let role = data.id_role;
-
-						if (role == 1) {
-							router.push('admin');
-						} else if (role == 2) {
-							router.push('mo');
-						} else if (role == 3) {
-							router.push('kasir');
-						}
+			axios.post('http://192.168.1.32:8000/api/loginWeb', {
+				username: username,
+				password: password
+			}).then((response) => {
+				if (response && response.data && response.data.data) {
+					toast.success("Berhasil Login !", {
+						timeout: 2000
+					})
+					let data = response.data.data; // Access 'data' field in response
+					// Check if 'data' is an object
+					let role = data.id_role;
+					if (role == 1) {
+						router.push('admin');
+					} else if (role == 2) {
+						router.push('mo');
+					} else if (role == 3) {
+						router.push('kasir');
 					}
-
-					//redirect ke halaman dashboard
-					// else if (response.data.user.id !== 1) {
-					// router
-					//     .push({
-					//     name: "user.produk.index",
-					//     })
-					// }
-
-					//set state loggedIn to true
-				})
+				}
+			})
 				.catch((error) => {
 					errors.usernameErrors = 'Pegawai not found';
 					errors.passwordErrors = 'Pegawai not found';
