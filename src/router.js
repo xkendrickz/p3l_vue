@@ -75,6 +75,11 @@ const routes = [
         name: 'kasir.presensiGym',
         component: () => import('@/views/Kasir/Presensi/PresensiGym.vue'),
       },
+      {
+        path: '/kasir/presensi/kelas',
+        name: 'kasir.presensiKelas',
+        component: () => import('@/views/Kasir/Presensi/PresensiKelas.vue'),
+      },
     ],
   },
   {

@@ -94,8 +94,8 @@ export default {
 											${presensis.map((presensi) => `
 												<p class="card-text">
 													No Struk &emsp;: ${presensi.no_struk}<br>
-													Tanggal &emsp;&ensp;: ${presensi.tanggal}<br>
-													Member &emsp;&nbsp;: ${presensi.member_id} / ${presensi.nama_member}<br>
+													Tanggal &emsp;&ensp;: ${presensi.tanggal}<br><br>
+													<strong>Member</strong> &emsp;&nbsp;: ${presensi.member_id} / ${presensi.nama_member}<br>
 													Slot Waktu &nbsp;: ${presensi.slot_waktu}<br>
 												</p>
 											`).join('')}

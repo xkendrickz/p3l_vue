@@ -28,6 +28,9 @@
 							<router-link :to="{ name: 'kasir.presensiGym' }" class="nav-link">Presensi Gym</router-link>
 						</li>
 						<li class="nav-item">
+							<router-link :to="{ name: 'kasir.presensiKelas' }" class="nav-link">Presensi Kelas</router-link>
+						</li>
+						<li class="nav-item">
 							<router-link :to="{ name: 'kasir.reset' }" class="nav-link">RESET</router-link>
 						</li>
 					</ul>
