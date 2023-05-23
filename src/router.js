@@ -70,6 +70,11 @@ const routes = [
         name: 'kasir.reset',
         component: () => import('@/views/Kasir/resetPage.vue'),
       },
+      {
+        path: '/kasir/presensi/gym',
+        name: 'kasir.presensiGym',
+        component: () => import('@/views/Kasir/Presensi/PresensiGym.vue'),
+      },
     ],
   },
   {
