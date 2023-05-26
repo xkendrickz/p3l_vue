@@ -26,6 +26,11 @@
 							<router-link :to="{ name: 'mo.izin.index' }" class="nav-link">Izin</router-link>
 						</li>
 					</ul>
+					<ul class="nav flex-column">
+						<li class="nav-item">
+							<router-link :to="{ name: 'mo.laporan.pendapatan' }" class="nav-link">Laporan Pendapatan</router-link>
+						</li>
+					</ul>
 				</div>
 				<div class="position-bottom pt-3">
 					<ul>

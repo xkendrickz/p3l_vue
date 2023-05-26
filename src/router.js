@@ -107,6 +107,11 @@ const routes = [
         name: 'mo.izin.index',
         component: () => import('@/views/manajerOperasional/Izin/indexPage.vue'),
       },
+      {
+        path: '/mo/laporan/pendapatan',
+        name: 'mo.laporan.pendapatan',
+        component: () => import('@/views/manajerOperasional/Laporan/laporanPendapatanPage.vue'),
+      },
     ],
   },
 ];
