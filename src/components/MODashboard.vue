@@ -44,6 +44,12 @@
 								Gym</router-link>
 						</li>
 					</ul>
+					<ul class="nav flex-column">
+						<li class="nav-item">
+							<router-link :to="{ name: 'mo.laporan.kinerja' }" class="nav-link">Laporan Kinerja
+								Instruktur</router-link>
+						</li>
+					</ul>
 				</div>
 				<div class="position-bottom pt-3">
 					<ul>

@@ -4,7 +4,7 @@
 			<div class="col-md-12">
 				<div class="card border-0 rounded shadow">
 					<div class="card-body">
-						<h4>LAPORAN AKTIVITAS KELAS</h4>
+						<h4>LAPORAN KINERJA INSTRUKTUR</h4>
 						<hr />
 						<form @submit.prevent="show">
 							<div class="form-group mb-3">
@@ -79,7 +79,7 @@ export default {
 			let selectedTahun = date.tahun;
 			console.log(selectedBulan)
 			console.log(selectedTahun)
-			axios.get(`http://192.168.1.32:8000/api/laporanAktivitasKelas/${selectedBulan}/${selectedTahun}`)
+			axios.get(`http://192.168.1.32:8000/api/laporanKinerjaInstruktur/${selectedBulan}/${selectedTahun}`)
 				.then((response) => {
 					console.log(response)
 					laporan.push(response.data.data);
@@ -91,7 +91,7 @@ export default {
 						const printContents = `
 						<html>
 						<head>
-							<title>Laporan Aktivitas Kelas</title>
+							<title>Laporan Kinerja Instruktur</title>
 							<style type="text/css">
 							body {
 									display: flex;
@@ -138,7 +138,7 @@ export default {
 										<b>GoFit</b><br>
 										Jl. Centralpark No. 10 Yogyakarta
 									<p>
-										<b><u>LAPORAN AKTIVITAS KELAS BULANAN</u></b><br>
+										<b><u>LAPORAN KINERJA INSTRUKTUR BULANAN</u></b><br>
 										${bulan.map((data) => `
 										<u>Bulan : ${data}
 										`).join('')}&emsp;
@@ -147,38 +147,38 @@ export default {
 										 `).join('')}
 										 ${tanggal.map((data) => `
 											Tanggal cetak: ${data}
-										 `).join('')}
+										 `).join('')}		
 									</p>
 								</div>
 								${laporan.map((data) => `
 								<table>
 									<tr>
 										<th>
-											Kelas
+											Nama
 										</th>
 										<th>
-											Instruktur
+											Jumlah Hadir
 										</th>
 										<th>
-											Jumlah Peserta
+											Jumlah Libur
 										</th>
 										<th>
-											Jumlah libur
+											Waktu Terlambat (detik)
 										</th>
 									</tr>
 									${data.map((item) => `
 										<tr>
 											<td>
-												${item.nama_kelas}
-											</td>
-											<td>
 												${item.nama_instruktur}
 											</td>
 											<td>
-												${item.total_peserta}
+												${item.jumlah_hadir}
 											</td>
 											<td>
-												${item.total_libur}
+												${item.jumlah_libur}
+											</td>
+											<td>
+												${item.waktu_terlambat}
 											</td>
 										</tr>
 									`).join('')}

@@ -122,6 +122,11 @@ const routes = [
         name: 'mo.laporan.aktivitasGym',
         component: () => import('@/views/manajerOperasional/Laporan/laporanAktivitasGymPage.vue'),
       },
+      {
+        path: '/mo/laporan/kinerja',
+        name: 'mo.laporan.kinerja',
+        component: () => import('@/views/manajerOperasional/Laporan/laporanKinerjaInstrukturPage.vue'),
+      },
     ],
   },
 ];
