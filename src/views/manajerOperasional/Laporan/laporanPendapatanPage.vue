@@ -89,7 +89,7 @@ export default {
 
 									.card {
 										width: 650px;
-										height: 432px;
+										height: auto;
 										outline: 1px solid black;
 										text-align: left;
 										margin-top: 50px; /* Add margin to the top */
@@ -153,174 +153,22 @@ export default {
 												Total
 											</th>
 										</tr>
+										${data.map((item) => `
 										<tr>
 											<td>
-												${data[0].nama_bulan}
+												${item.nama_bulan}
 											</td>
 											<td>
-												${data[0].total_aktivasi}
+												${item.total_aktivasi}
 											</td>
 											<td>
-												${data[0].total_deposit}
+												${item.total_deposit}
 											</td>
 											<td>
-												${data[0].total_bulanan}
+												${item.total_bulanan}
 											</td>
 										</tr>
-										<tr>
-											<td>
-												${data[1].nama_bulan}
-											</td>
-											<td>
-												${data[1].total_aktivasi}
-											</td>
-											<td>
-												${data[1].total_deposit}
-											</td>
-											<td>
-												${data[1].total_bulanan}
-											</td>
-										</tr>
-										<tr>
-											<td>
-												${data[2].nama_bulan}
-											</td>
-											<td>
-												${data[2].total_aktivasi}
-											</td>
-											<td>
-												${data[2].total_deposit}
-											</td>
-											<td>
-												${data[2].total_bulanan}
-											</td>
-										</tr>
-										<tr>
-											<td>
-												${data[3].nama_bulan}
-											</td>
-											<td>
-												${data[3].total_aktivasi}
-											</td>
-											<td>
-												${data[3].total_deposit}
-											</td>
-											<td>
-												${data[3].total_bulanan}
-											</td>
-										</tr>
-										<tr>
-											<td>
-												${data[4].nama_bulan}
-											</td>
-											<td>
-												${data[4].total_aktivasi}
-											</td>
-											<td>
-												${data[4].total_deposit}
-											</td>
-											<td>
-												${data[4].total_bulanan}
-											</td>
-										</tr>
-										<tr>
-											<td>
-												${data[5].nama_bulan}
-											</td>
-											<td>
-												${data[5].total_aktivasi}
-											</td>
-											<td>
-												${data[5].total_deposit}
-											</td>
-											<td>
-												${data[5].total_bulanan}
-											</td>
-										</tr>
-										<tr>
-											<td>
-												${data[6].nama_bulan}
-											</td>
-											<td>
-												${data[6].total_aktivasi}
-											</td>
-											<td>
-												${data[6].total_deposit}
-											</td>
-											<td>
-												${data[6].total_bulanan}
-											</td>
-										</tr>
-										<tr>
-											<td>
-												${data[7].nama_bulan}
-											</td>
-											<td>
-												${data[7].total_aktivasi}
-											</td>
-											<td>
-												${data[7].total_deposit}
-											</td>
-											<td>
-												${data[7].total_bulanan}
-											</td>
-										</tr>
-										<tr>
-											<td>
-												${data[8].nama_bulan}
-											</td>
-											<td>
-												${data[8].total_aktivasi}
-											</td>
-											<td>
-												${data[8].total_deposit}
-											</td>
-											<td>
-												${data[8].total_bulanan}
-											</td>
-										</tr>
-										<tr>
-											<td>
-												${data[9].nama_bulan}
-											</td>
-											<td>
-												${data[9].total_aktivasi}
-											</td>
-											<td>
-												${data[9].total_deposit}
-											</td>
-											<td>
-												${data[9].total_bulanan}
-											</td>
-										</tr>
-										<tr>
-											<td>
-												${data[10].nama_bulan}
-											</td>
-											<td>
-												${data[10].total_aktivasi}
-											</td>
-											<td>
-												${data[10].total_deposit}
-											</td>
-											<td>
-												${data[10].total_bulanan}
-											</td>
-										</tr>
-										<tr>
-											<td>
-												${data[11].nama_bulan}
-											</td>
-											<td>
-												${data[11].total_aktivasi}
-											</td>
-											<td>
-												${data[11].total_deposit}
-											</td>
-											<td>
-												${data[11].total_bulanan}
-											</td>
-										</tr>
+										`).join('')}
 										<tr>
 											<td colspan="3" class="total-cell">Total</td>
 											${total.map((data) => `

@@ -4,14 +4,25 @@
 			<div class="col-md-12">
 				<div class="card border-0 rounded shadow">
 					<div class="card-body">
-						<h4>LAPORAN PENDAPATAN</h4>
+						<h4>LAPORAN AKTIVITAS KELAS</h4>
 						<hr />
 						<form @submit.prevent="show">
 							<div class="form-group mb-3">
+								<label for="content" class="form-label">Bulan</label>
+								<select class="form-control" v-model="date.bulan">
+									<option v-for="month in dropdown.months" :key="month.month" :value="month.month">
+										{{ month.month }}
+									</option>
+								</select>
+								<!-- <div v-if="validation.id_member" class="mt-2 alert alert-danger">
+									{{ validation.id_member[0] }}
+								</div> -->
+							</div>
+							<div class="form-group mb-3">
 								<label for="content" class="form-label">Tahun</label>
-								<select class="form-control" v-model="tahun.tahun">
-									<option v-for="item in dropdown" :key="item" :value="item">
-										{{ item }}
+								<select class="form-control" v-model="date.tahun">
+									<option v-for="year in dropdown.years" :key="year.year" :value="year.year">
+										{{ year.year }}
 									</option>
 								</select>
 								<!-- <div v-if="validation.id_member" class="mt-2 alert alert-danger">
@@ -35,17 +46,18 @@ export default {
 	setup() {
 		//state aktivasi
 		const laporan = reactive([]);
-		const total = reactive([]);
-		const tahunNow = reactive([]);
+		const bulan = reactive([]);
+		const tahun = reactive([]);
 		const tanggal = reactive([]);
-		const tahun = reactive({
+		const date = reactive({
+			bulan: '',
 			tahun: '',
 		});
 
 		let dropdown = ref([])
 		onMounted(() => {
 			//get API from Laravel Backend
-			axios.get('http://192.168.1.32:8000/api/exposedDropdown')
+			axios.get('http://192.168.1.32:8000/api/dropdownAktivitasKelas')
 				.then(response => {
 					//assign state posts with response data
 					console.log(response)
@@ -63,275 +75,123 @@ export default {
 
 		//method store
 		function show() {
-			let selectedTahun = tahun.tahun;
+			let selectedBulan = date.bulan;
+			let selectedTahun = date.tahun;
+			console.log(selectedBulan)
 			console.log(selectedTahun)
-			axios.get(`http://192.168.1.32:8000/api/laporanPendapatan/${selectedTahun}`)
+			axios.get(`http://192.168.1.32:8000/api/laporanAktivitasKelas/${selectedBulan}/${selectedTahun}`)
 				.then((response) => {
 					console.log(response)
 					laporan.push(response.data.data);
-					total.push(response.data.total_tahunan);
-					tahunNow.push(response.data.tahun);
+					bulan.push(response.data.bulan);
+					tahun.push(response.data.tahun);
 					tanggal.push(response.data.tanggal);
-					if (laporan.length > 0 && total.length > 0 && tahunNow.length > 0 && tanggal.length > 0) {
+					if (laporan.length > 0 && bulan.length > 0 && tahun.length > 0 && tanggal.length > 0) {
 						console.log(laporan)
 						const printContents = `
-							<html>
-							<head>
-								<title>Laporan Pendapatan</title>
-								<style type="text/css">
-									body {
-										display: flex;
-										justify-content: center;
-										align-items: flex-start; /* Align items to the top */
-										height: 100vh;
-										margin: 0; /* Remove default body margin */
-									}
+						<html>
+						<head>
+							<title>Laporan Aktivitas Kelas</title>
+							<style type="text/css">
+							body {
+									display: flex;
+									justify-content: center;
+									align-items: flex-start; /* Align items to the top */
+									height: 100vh;
+									margin: 0; /* Remove default body margin */
+								}
 
-									.card {
-										width: 650px;
-										height: 432px;
-										outline: 1px solid black;
-										text-align: left;
-										margin-top: 50px; /* Add margin to the top */
-									}
+							.card {
+								width: 650px;
+								height: auto;
+								outline: 1px solid black;
+								text-align: left;
+								margin-top: 50px; /* Add margin to the top */
+							}
 
-									table, th, td {
-										border-collapse: collapse;
-										width: 650px; /* Set table width to 100% */
-									}
+							table, th, td {
+								border-collapse: collapse;
+								width: 650px; /* Set table width to 100% */
+							}
 
-									th, td {
-										border: 1px solid black;
-									}
+							th, td {
+								border: 1px solid black;
+							}
 
-									th:first-child, td:first-child {
-										border-left: none; /* Remove left border for first column */
-									}
+							th:first-child, td:first-child {
+								border-left: none; /* Remove left border for first column */
+							}
 
-									th:last-child, td:last-child {
-										border-right: none; /* Remove right border for last column */
-									}
+							th:last-child, td:last-child {
+								border-right: none; /* Remove right border for last column */
+							}
 
-									tr:last-child td {
-										border-bottom: none; /* Remove bottom border for last row */
-									}
+							tr:last-child td {
+								border-bottom: none; /* Remove bottom border for last row */
+							}
 
-									.total-cell {
-										text-align: right;
-									}
-								</style>
-							</head>
-							<body>
-								<div class="card">
-									<div class="title">
-										<p>
-											<b>GoFit</b><br>
-											Jl. Centralpark No. 10 Yogyakarta
-										<p>
-											<b><u>LAPORAN PENDAPATAN BULANAN</u></b><br>
-											${tahunNow.map((data) => `
-											PERIODE : ${data}<br>
-											`).join('')}
-											${tanggal.map((data) => `
+							.total-cell {
+								text-align: right;
+							}
+							</style>
+						</head>
+						<body>
+							<div class="card">
+								<div class="title">
+									<p>
+										<b>GoFit</b><br>
+										Jl. Centralpark No. 10 Yogyakarta
+									<p>
+										<b><u>LAPORAN AKTIVITAS KELAS BULANAN</u></b><br>
+										${bulan.map((data) => `
+										<u>Bulan : ${data}
+										`).join('')}&emsp;
+										${tahun.map((data) => `
+										 Tahun : ${data}</u><br>
+										 `).join('')}
+										 ${tanggal.map((data) => `
 											Tanggal cetak: ${data}
-											`).join('')}
-										</p>
-									</div>
-									${laporan.map((data) => `
-									<table>
-										<tr>
-											<th>
-												Bulan
-											</th>
-											<th>
-												Aktivasi
-											</th>
-											<th>
-												Deposit
-											</th>
-											<th>
-												Total
-											</th>
-										</tr>
-										<tr>
-											<td>
-												${data[0].nama_bulan}
-											</td>
-											<td>
-												${data[0].total_aktivasi}
-											</td>
-											<td>
-												${data[0].total_deposit}
-											</td>
-											<td>
-												${data[0].total_bulanan}
-											</td>
-										</tr>
-										<tr>
-											<td>
-												${data[1].nama_bulan}
-											</td>
-											<td>
-												${data[1].total_aktivasi}
-											</td>
-											<td>
-												${data[1].total_deposit}
-											</td>
-											<td>
-												${data[1].total_bulanan}
-											</td>
-										</tr>
-										<tr>
-											<td>
-												${data[2].nama_bulan}
-											</td>
-											<td>
-												${data[2].total_aktivasi}
-											</td>
-											<td>
-												${data[2].total_deposit}
-											</td>
-											<td>
-												${data[2].total_bulanan}
-											</td>
-										</tr>
-										<tr>
-											<td>
-												${data[3].nama_bulan}
-											</td>
-											<td>
-												${data[3].total_aktivasi}
-											</td>
-											<td>
-												${data[3].total_deposit}
-											</td>
-											<td>
-												${data[3].total_bulanan}
-											</td>
-										</tr>
-										<tr>
-											<td>
-												${data[4].nama_bulan}
-											</td>
-											<td>
-												${data[4].total_aktivasi}
-											</td>
-											<td>
-												${data[4].total_deposit}
-											</td>
-											<td>
-												${data[4].total_bulanan}
-											</td>
-										</tr>
-										<tr>
-											<td>
-												${data[5].nama_bulan}
-											</td>
-											<td>
-												${data[5].total_aktivasi}
-											</td>
-											<td>
-												${data[5].total_deposit}
-											</td>
-											<td>
-												${data[5].total_bulanan}
-											</td>
-										</tr>
-										<tr>
-											<td>
-												${data[6].nama_bulan}
-											</td>
-											<td>
-												${data[6].total_aktivasi}
-											</td>
-											<td>
-												${data[6].total_deposit}
-											</td>
-											<td>
-												${data[6].total_bulanan}
-											</td>
-										</tr>
-										<tr>
-											<td>
-												${data[7].nama_bulan}
-											</td>
-											<td>
-												${data[7].total_aktivasi}
-											</td>
-											<td>
-												${data[7].total_deposit}
-											</td>
-											<td>
-												${data[7].total_bulanan}
-											</td>
-										</tr>
-										<tr>
-											<td>
-												${data[8].nama_bulan}
-											</td>
-											<td>
-												${data[8].total_aktivasi}
-											</td>
-											<td>
-												${data[8].total_deposit}
-											</td>
-											<td>
-												${data[8].total_bulanan}
-											</td>
-										</tr>
-										<tr>
-											<td>
-												${data[9].nama_bulan}
-											</td>
-											<td>
-												${data[9].total_aktivasi}
-											</td>
-											<td>
-												${data[9].total_deposit}
-											</td>
-											<td>
-												${data[9].total_bulanan}
-											</td>
-										</tr>
-										<tr>
-											<td>
-												${data[10].nama_bulan}
-											</td>
-											<td>
-												${data[10].total_aktivasi}
-											</td>
-											<td>
-												${data[10].total_deposit}
-											</td>
-											<td>
-												${data[10].total_bulanan}
-											</td>
-										</tr>
-										<tr>
-											<td>
-												${data[11].nama_bulan}
-											</td>
-											<td>
-												${data[11].total_aktivasi}
-											</td>
-											<td>
-												${data[11].total_deposit}
-											</td>
-											<td>
-												${data[11].total_bulanan}
-											</td>
-										</tr>
-										<tr>
-											<td colspan="3" class="total-cell">Total</td>
-											${total.map((data) => `
-											<td>${data}</td>
-											`).join('')}
-										</tr>
-									</table>
-									`).join('')}
+										 `).join('')}
+										
+									</p>
 								</div>
-							</body>
-							</html>`;
+								${laporan.map((data) => `
+								<table>
+									<tr>
+										<th>
+											Kelas
+										</th>
+										<th>
+											Instruktur
+										</th>
+										<th>
+											Jumlah Peserta
+										</th>
+										<th>
+											Jumlah libur
+										</th>
+									</tr>
+									${data.map((item) => `
+										<tr>
+											<td>
+												${item.nama_kelas}
+											</td>
+											<td>
+												${item.nama_instruktur}
+											</td>
+											<td>
+												${item.total_peserta}
+											</td>
+											<td>
+												${item.total_libur}
+											</td>
+										</tr>
+									`).join('')}
+								</table>
+								`).join('')}
+							</div>
+						</body>
+						</html>`;
 						const popup = window.open("", "_blank");
 						popup.document.write(printContents);
 						popup.document.close();
@@ -339,8 +199,8 @@ export default {
 						popup.print();
 						popup.close();
 						laporan.length = 0
-						total.length = 0
-						tahunNow.length = 0
+						bulan.length = 0
+						tahun.length = 0
 						tanggal.length = 0
 					}
 				})
@@ -353,10 +213,10 @@ export default {
 		return {
 			dropdown,
 			laporan,
-			total,
-			tahunNow,
-			tanggal,
+			bulan,
 			tahun,
+			tanggal,
+			date,
 			validation,
 			router,
 			show,

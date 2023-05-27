@@ -95,6 +95,7 @@ export default {
 				let id_aktivasi = response.data.data.id_aktivasi;
 				axios.get(`http://192.168.1.32:8000/api/aktivasi/${id_aktivasi}`)
 					.then((response) => {
+						console.log(response)
 						aktivasis.push(response.data.data);
 						if (aktivasis.length > 0) {
 							console.log(aktivasis)
