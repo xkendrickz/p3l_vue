@@ -112,6 +112,11 @@ const routes = [
         name: 'mo.laporan.pendapatan',
         component: () => import('@/views/manajerOperasional/Laporan/laporanPendapatanPage.vue'),
       },
+      {
+        path: '/mo/laporan/aktivitasKelas',
+        name: 'mo.laporan.aktivitasKelas',
+        component: () => import('@/views/manajerOperasional/Laporan/laporanAktivitasKelasPage.vue'),
+      },
     ],
   },
 ];

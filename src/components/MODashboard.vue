@@ -28,7 +28,14 @@
 					</ul>
 					<ul class="nav flex-column">
 						<li class="nav-item">
-							<router-link :to="{ name: 'mo.laporan.pendapatan' }" class="nav-link">Laporan Pendapatan</router-link>
+							<router-link :to="{ name: 'mo.laporan.pendapatan' }" class="nav-link">Laporan
+								Pendapatan</router-link>
+						</li>
+					</ul>
+					<ul class="nav flex-column">
+						<li class="nav-item">
+							<router-link :to="{ name: 'mo.laporan.aktivitasKelas' }" class="nav-link">Laporan Aktivitas
+								Kelas</router-link>
 						</li>
 					</ul>
 				</div>
