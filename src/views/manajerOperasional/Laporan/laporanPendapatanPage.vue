@@ -88,7 +88,7 @@ export default {
 									}
 
 									.card {
-										width: 650px;
+										width: auto;
 										height: auto;
 										outline: 1px solid black;
 										text-align: left;
@@ -170,7 +170,7 @@ export default {
 										</tr>
 										`).join('')}
 										<tr>
-											<td colspan="3" class="total-cell">Total</td>
+											<td colspan="3" class="total-cell"><b>Total</b></td>
 											${total.map((data) => `
 											<td>${data}</td>
 											`).join('')}

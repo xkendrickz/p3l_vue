@@ -38,6 +38,12 @@
 								Kelas</router-link>
 						</li>
 					</ul>
+					<ul class="nav flex-column">
+						<li class="nav-item">
+							<router-link :to="{ name: 'mo.laporan.aktivitasGym' }" class="nav-link">Laporan Aktivitas
+								Gym</router-link>
+						</li>
+					</ul>
 				</div>
 				<div class="position-bottom pt-3">
 					<ul>

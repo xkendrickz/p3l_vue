@@ -4,7 +4,7 @@
 			<div class="col-md-12">
 				<div class="card border-0 rounded shadow">
 					<div class="card-body">
-						<h4>LAPORAN AKTIVITAS KELAS</h4>
+						<h4>LAPORAN AKTIVITAS GYM</h4>
 						<hr />
 						<form @submit.prevent="show">
 							<div class="form-group mb-3">
@@ -49,6 +49,7 @@ export default {
 		const bulan = reactive([]);
 		const tahun = reactive([]);
 		const tanggal = reactive([]);
+		const total = reactive([]);
 		const date = reactive({
 			bulan: '',
 			tahun: '',
@@ -57,7 +58,7 @@ export default {
 		let dropdown = ref([])
 		onMounted(() => {
 			//get API from Laravel Backend
-			axios.get('http://192.168.1.32:8000/api/dropdownAktivitasKelas')
+			axios.get('http://192.168.1.32:8000/api/dropdownAktivitasGym')
 				.then(response => {
 					//assign state posts with response data
 					console.log(response)
@@ -79,19 +80,20 @@ export default {
 			let selectedTahun = date.tahun;
 			console.log(selectedBulan)
 			console.log(selectedTahun)
-			axios.get(`http://192.168.1.32:8000/api/laporanAktivitasKelas/${selectedBulan}/${selectedTahun}`)
+			axios.get(`http://192.168.1.32:8000/api/laporanAktivitasGym/${selectedBulan}/${selectedTahun}`)
 				.then((response) => {
 					console.log(response)
 					laporan.push(response.data.data);
+					total.push(response.data.total);
 					bulan.push(response.data.bulan);
 					tahun.push(response.data.tahun);
 					tanggal.push(response.data.tanggal);
-					if (laporan.length > 0 && bulan.length > 0 && tahun.length > 0 && tanggal.length > 0) {
+					if (laporan.length > 0 && total.length > 0 && bulan.length > 0 && tahun.length > 0 && tanggal.length > 0) {
 						console.log(laporan)
 						const printContents = `
 						<html>
 						<head>
-							<title>Laporan Aktivitas Kelas</title>
+							<title>Laporan Aktivitas Gym</title>
 							<style type="text/css">
 							body {
 									display: flex;
@@ -129,6 +131,7 @@ export default {
 							tr:last-child td {
 								border-bottom: none; /* Remove bottom border for last row */
 							}
+							</style>
 						</head>
 						<body>
 							<div class="card">
@@ -154,34 +157,32 @@ export default {
 								<table>
 									<tr>
 										<th>
-											Kelas
+											Tanggal
 										</th>
 										<th>
-											Instruktur
-										</th>
-										<th>
-											Jumlah Peserta
-										</th>
-										<th>
-											Jumlah libur
+											Jumlah Member
 										</th>
 									</tr>
 									${data.map((item) => `
-										<tr>
-											<td>
-												${item.nama_kelas}
-											</td>
-											<td>
-												${item.nama_instruktur}
-											</td>
-											<td>
-												${item.total_peserta}
-											</td>
-											<td>
-												${item.total_libur}
-											</td>
-										</tr>
-									`).join('')}
+									<tr>
+										<td>
+											${item.tanggal}
+										</td>
+										<td>
+											${item.jumlah_member}
+										</td>
+									</tr>
+									`).join('')}									
+									<tr>
+										<td><b>
+											TOTAL
+										</td></b>
+										${total.map((data) => `
+										<td><b>
+											${data}
+										</td></b>
+										`).join('')}
+									</tr>							
 								</table>
 								`).join('')}
 							</div>
@@ -194,6 +195,7 @@ export default {
 						popup.print();
 						popup.close();
 						laporan.length = 0
+						total.length = 0
 						bulan.length = 0
 						tahun.length = 0
 						tanggal.length = 0
@@ -211,6 +213,7 @@ export default {
 			bulan,
 			tahun,
 			tanggal,
+			total,
 			date,
 			validation,
 			router,

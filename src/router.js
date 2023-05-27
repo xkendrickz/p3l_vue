@@ -117,6 +117,11 @@ const routes = [
         name: 'mo.laporan.aktivitasKelas',
         component: () => import('@/views/manajerOperasional/Laporan/laporanAktivitasKelasPage.vue'),
       },
+      {
+        path: '/mo/laporan/aktivitasGym',
+        name: 'mo.laporan.aktivitasGym',
+        component: () => import('@/views/manajerOperasional/Laporan/laporanAktivitasGymPage.vue'),
+      },
     ],
   },
 ];
