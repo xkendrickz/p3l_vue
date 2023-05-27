@@ -45,7 +45,7 @@ export default {
 		let dropdown = ref([])
 		onMounted(() => {
 			//get API from Laravel Backend
-			axios.get('http://192.168.1.32:8000/api/exposedDropdown')
+			axios.get('http://192.168.1.32:8000/api/dropdownPendapatan')
 				.then(response => {
 					//assign state posts with response data
 					console.log(response)
