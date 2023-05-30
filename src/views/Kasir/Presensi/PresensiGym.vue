@@ -49,7 +49,7 @@ export default {
 		let toast = useToast();
 
 		onMounted(() => {
-			axios.get('http://192.168.1.32:8000/api/presensiGym')
+			axios.get('http://10.53.11.139:8000/api/presensiGym')
 				.then(response => {
 					bookingGym.value = response.data.data
 					console.log('response', bookingGym.value);
@@ -60,11 +60,11 @@ export default {
 
 		//method delete
 		function presensiMember(id_booking_gym) {
-			axios.put(`http://192.168.1.32:8000/api/presensiGym/${id_booking_gym}`)
+			axios.put(`http://10.53.11.139:8000/api/presensiGym/${id_booking_gym}`)
 				.then((response) => {
 					console.log(response)
 					let id_presensi_gym = response.data.data.id_presensi_gym;
-					axios.get(`http://192.168.1.32:8000/api/presensiGym/${id_presensi_gym}`)
+					axios.get(`http://10.53.11.139:8000/api/presensiGym/${id_presensi_gym}`)
 						.then((response) => {
 							console.log(response)
 							presensis.push(response.data.data);
