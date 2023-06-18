@@ -49,7 +49,7 @@
         //logout
 
         axios
-            .post("http://192.168.100.111/p3l/gopit_backend/public/pegawai")
+            .post("http://10.53.6.18/p3l/gopit_backend/public/pegawai")
             .then((response) => {
             if (response.data.success) {
                 toast.error("Berhasil Logout !",{

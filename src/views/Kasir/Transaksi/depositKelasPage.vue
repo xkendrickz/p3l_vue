@@ -77,7 +77,7 @@ export default {
 		let members = ref([])
 		onMounted(() => {
 			//get API from Laravel Backend
-			axios.get('http://192.168.1.32:8000/api/member')
+			axios.get('https://gofit123.xyz/p3l_laravel/public/member')
 				.then(response => {
 					//assign state posts with response data
 					members.value = response.data.data
@@ -89,7 +89,7 @@ export default {
 		let pegawais = ref([])
 		onMounted(() => {
 			//get API from Laravel Backend
-			axios.get('http://192.168.1.32:8000/api/pegawai')
+			axios.get('https://gofit123.xyz/p3l_laravel/public/pegawai')
 				.then(response => {
 					//assign state posts with response data
 					pegawais.value = response.data.data
@@ -101,7 +101,7 @@ export default {
 		let kelass = ref([])
 		onMounted(() => {
 			//get API from Laravel Backend
-			axios.get('http://192.168.1.32:8000/api/kelas')
+			axios.get('https://gofit123.xyz/p3l_laravel/public/kelas')
 				.then(response => {
 					//assign state posts with response data
 					kelass.value = response.data.data
@@ -124,7 +124,7 @@ export default {
 			let deposit = depositKelas.deposit
 			let toast = useToast();
 
-			axios.post("http://192.168.1.32:8000/api/depositKelas", {
+			axios.post("https://gofit123.xyz/p3l_laravel/public/depositKelas", {
 				id_member: id_member,
 				id_pegawai: id_pegawai,
 				id_kelas: id_kelas,
@@ -133,48 +133,66 @@ export default {
 				.then((response) => {
 					console.log()
 					let id_deposit = response.data.data.id_deposit_paket;
-					axios.get(`http://192.168.1.32:8000/api/depositReguler/${id_deposit}`)
+					axios.get(`https://gofit123.xyz/p3l_laravel/public/depositKelas/${id_deposit}`)
 						.then((response) => {
 							depositKelass.push(response.data.data);
 							if (depositKelass.length > 0) {
 								console.log(depositKelass)
 								const printContents = `
-									<html>
-									<head>
-										<title>Struk Deposit Kelas</title>
-										<style type="text/css">
-										.card {
-											width: 300px;
-											height: 300px;
-											padding: 20px;
-											margin: 50px auto;
-											outline: 2px solid black; /* replace "border" with "outline" */
-											text-align: left;
-										}
-										</style>
-									</head>
-									<body>
-										<div class="card">
-											<h5 class="card-title"><strong>GoFit</strong></h5>
-											<p>Jl. Qlipoth Tree No 5 Yogyakarta</p>
+								<html>
+							<head>
+							<title>Struk Deposit Kelas</title>
+							<style type="text/css">
+								.card {
+								width: 800px;
+								height: auto;
+								padding: 20px;
+								margin: 50px auto;
+								outline: 2px solid black; /* replace "border" with "outline" */
+								text-align: left;
+								}
 
-											<h5 class="card-title"><strong>MEMBER CARD</strong></h5>
-											${depositKelass.map((depositKelas) => `
-												<p class="card-text">
-													No Struk : ${depositKelas.no_struk}<br>
-													Tanggal : ${depositKelas.tanggal_aktivasi}<br>
-													Member : ${depositKelas.member_id} / ${depositKelas.nama_member}<br>
-													Deposit : Rp.${depositKelas.harga},-<br>
-													Jenis Kelas: ${depositKelas.nama_kelas}<br>
-													Total Deposit: ${depositKelas.jumlah_deposit_kelas}<br>
-													Total Deposit: ${depositKelas.jumlah_deposit_kelas}<br>
-													Berlaku sampai dengan : ${depositKelas.berlaku_sampai}<br>
-													Kasir: P${depositKelas.id_pegawai} / ${depositKelas.nama_pegawai}
-												</p>
-											`).join('')}
-										</div>
-									</body>
-									</html>`;
+								.card-title {
+								margin-bottom: 5px;
+								}
+
+								.card .noStruk {
+								float: right;
+								}
+
+								.card .tanggal {
+								float: right;
+								}
+
+								.card .kasir {
+								float: right;
+								}
+							</style>
+							</head>
+							<body>
+							${depositKelass.map((depositKelas) => `
+							<div class="card">
+								<p>
+								<span class="goFit"><b>GoFit</b></span>
+								<span class="noStruk">No Struk : ${depositKelas.no_struk}</span>
+								<br>
+								<span>Jl. Qlipoth Tree No 5 Yogyakarta</span>
+								<span class="tanggal">Tanggal : ${depositKelas.tanggal}</span>
+								</p>
+
+								<h5 class="card-title"><strong>MEMBER CARD</strong></h5>
+								<p class="card-text">
+								<b>Member</b> : ${depositKelas.member_id} / ${depositKelas.nama_member}<br>
+								Deposit : Rp.${depositKelas.harga},-<br>
+								Jenis Kelas: ${depositKelas.nama_kelas}<br>
+								Total Deposit: ${depositKelas.jumlah_deposit_paket}<br>
+								Berlaku sampai dengan : ${depositKelas.berlaku_sampai}<br>
+								<span class="kasir">Kasir: P${depositKelas.id_pegawai} / ${depositKelas.nama_pegawai}</span>
+								</p>
+							</div>
+							`).join('')}
+							</body>
+							</html>`;
 								const popup = window.open("", "_blank");
 								popup.document.write(printContents);
 								popup.document.close();

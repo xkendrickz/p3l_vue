@@ -34,7 +34,7 @@
 							<div class="position-relative bg-gradient-primary h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center overflow-hidden"
 								style="background-image: linear-gradient(rgba(40, 40, 40, 0.6), rgba(40, 40, 40, 0.8)), url('https://i.pinimg.com/736x/f7/4f/5a/f74f5a4cbbf2582549d09858c3088dbd.jpg'); background-size: cover;">
 								<span class="mask bg-gradient-primary"></span>
-								<h3 class="mt-5 text-white font-weight-bolder position-relative">"Pake Nanya"</h3>
+								<h3 class="mt-5 text-white font-weight-bolder position-relative">"Kebugaran adalah investasi terbaik yang dapat Anda berikan pada diri sendiri."</h3>
 								<p class="text-white position-relative">- Ahmad Tukam</p>
 							</div>
 						</div>
@@ -91,7 +91,7 @@ export default {
 			//send server with axios
 			let username = pegawai.username
 			let password = pegawai.password
-			axios.post('http://192.168.1.32:8000/api/loginWeb', {
+			axios.post('https://gofit123.xyz/p3l_laravel/public/loginWeb', {
 				username: username,
 				password: password
 			}).then((response) => {

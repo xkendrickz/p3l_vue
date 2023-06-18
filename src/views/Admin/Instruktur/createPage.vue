@@ -94,7 +94,7 @@ export default {
 
 			// const token = localStorage.getItem('token')
 			// axios.defaults.headers.common = {'Authorization': `Bearer ${token}`}
-			axios.post("http://192.168.100.111/p3l/gopit_backend/public/instruktur", instruktur)
+			axios.post("http://10.53.6.18/p3l/gopit_backend/public/instruktur", instruktur)
 				.then(() => {
 					toast.success("Berhasil Register Instruktur !", {
 						timeout: 2000

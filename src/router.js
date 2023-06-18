@@ -93,6 +93,16 @@ const routes = [
         component: () => import('@/views/manajerOperasional/JadwalUmum/indexPage.vue'),
       },
       {
+        path: '/mo/jadwalUmum/create',
+        name: 'mo.jadwalUmum.create',
+        component: () => import('@/views/manajerOperasional/JadwalUmum/createPage.vue'),
+      },
+      {
+        path: '/mo/jadwalUmum/edit',
+        name: 'mo.jadwalUmum.edit',
+        component: () => import('@/views/manajerOperasional/JadwalUmum/editPage.vue'),
+      },
+      {
         path: '/mo/jadwalHarian',
         name: 'mo.jadwalHarian.index',
         component: () => import('@/views/manajerOperasional/JadwalHarian/indexPage.vue'),

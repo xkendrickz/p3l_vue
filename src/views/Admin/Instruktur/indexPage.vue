@@ -70,7 +70,7 @@ export default {
 		onMounted(() => {
 			// axios.defaults.headers.common = {'Authorization': `Bearer ${token}`}
 
-			axios.get('http://192.168.100.111/p3l/gopit_backend/public/instruktur')
+			axios.get('http://10.53.6.18/p3l/gopit_backend/public/instruktur')
 				.then(response => {
 					instruktur.value = response.data.data
 					console.log('response', instruktur.value);
@@ -83,7 +83,7 @@ export default {
 		//method delete
 		function instrukturDelete(id_instruktur) {
 
-			axios.delete(`http://192.168.100.111/p3l/gopit_backend/public/instruktur/${id_instruktur}`)
+			axios.delete(`http://10.53.6.18/p3l/gopit_backend/public/instruktur/${id_instruktur}`)
 				.then(() => {
 					instruktur.value.splice(instruktur.value.indexOf(id_instruktur));
 					localStorage.setItem("showToast", "true"); // Set flag to show toast

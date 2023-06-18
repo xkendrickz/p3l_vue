@@ -73,7 +73,7 @@ export default {
 		let toast = useToast();
 
 		onMounted(() => {
-			axios.get('http://192.168.1.32:8000/api/indexAktivasi')
+			axios.get('https://gofit123.xyz/p3l_laravel/public/indexAktivasi')
 				.then(response => {
 					aktivasi.value = response.data.data
 				}).catch(error => {
@@ -82,7 +82,7 @@ export default {
 		})
 
 		onMounted(() => {
-			axios.get('http://192.168.1.32:8000/api/indexDeposit')
+			axios.get('https://gofit123.xyz/p3l_laravel/public/indexDeposit')
 				.then(response => {
 					deposit.value = response.data.data
 				}).catch(error => {
@@ -91,7 +91,7 @@ export default {
 		})
 
 		function resetMember() {
-			axios.post(`http://192.168.1.32:8000/api/resetMember`)
+			axios.post(`https://gofit123.xyz/p3l_laravel/public/resetMember`)
 				.then(() => {
 					toast.success("Berhasil Reset Status Member dan Sisa Deposit Paket!", {
 						timeout: 2000
@@ -103,7 +103,7 @@ export default {
 		}
 
 		function resetInstruktur() {
-			axios.post(`http://192.168.1.32:8000/api/resetInstruktur`)
+			axios.post(`https://gofit123.xyz/p3l_laravel/public/resetInstruktur`)
 				.then(() => {
 					toast.success("Berhasil Reset Waktu Terlambat Instruktur !", {
 						timeout: 2000

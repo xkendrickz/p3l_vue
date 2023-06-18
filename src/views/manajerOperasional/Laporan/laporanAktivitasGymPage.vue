@@ -58,7 +58,7 @@ export default {
 		let dropdown = ref([])
 		onMounted(() => {
 			//get API from Laravel Backend
-			axios.get('http://10.53.11.139:8000/api/dropdownAktivitasGym')
+			axios.get('https://gofit123.xyz/p3l_laravel/public/dropdownAktivitasGym')
 				.then(response => {
 					//assign state posts with response data
 					console.log(response)
@@ -80,7 +80,7 @@ export default {
 			let selectedTahun = date.tahun;
 			console.log(selectedBulan)
 			console.log(selectedTahun)
-			axios.get(`http://10.53.11.139:8000/api/laporanAktivitasGym/${selectedBulan}/${selectedTahun}`)
+			axios.get(`https://gofit123.xyz/p3l_laravel/public/laporanAktivitasGym/${selectedBulan}/${selectedTahun}`)
 				.then((response) => {
 					console.log(response)
 					laporan.push(response.data.data);

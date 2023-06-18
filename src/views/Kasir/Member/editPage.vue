@@ -136,7 +136,7 @@
             // axios.defaults.headers.common = {'Authorization': `Bearer ${token}`}
             //get API from Laravel Backend
             axios
-                .get(`http://192.168.100.111/p3l/gopit_backend/public/member/${id_member}/${Tanggal_lahir}`,)
+                .get(`http://10.53.6.18/p3l/gopit_backend/public/member/${id_member}/${Tanggal_lahir}`,)
                 .then(response => {
                     //assign state posts with response data
                     member.nama_member = response.data.data.nama_member
@@ -166,7 +166,7 @@
                 let toast = useToast();
 
                 axios
-                    .put(`http://192.168.100.111/p3l/gopit_backend/public/member/${route.params.id_member}/${route.params.Tanggal_lahir}`, {
+                    .put(`http://10.53.6.18/p3l/gopit_backend/public/member/${route.params.id_member}/${route.params.Tanggal_lahir}`, {
                         nama_member: nama_member,
                         umur: umur,
                         Tanggal_lahir: Tanggal_lahir,

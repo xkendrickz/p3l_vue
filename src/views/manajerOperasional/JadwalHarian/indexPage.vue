@@ -113,7 +113,7 @@ export default {
 		}
 
 		onMounted(() => {
-			axios.get('http://192.168.1.32:8000/api/jadwalHarian')
+			axios.get('https://gofit123.xyz/p3l_laravel/public/jadwalHarian')
 				.then(response => {
 					jadwal_harian.value = response.data.data;
 				})
@@ -124,7 +124,7 @@ export default {
 		})
 
 		function jadwalHarianCreate() {
-			axios.post("http://192.168.1.32:8000/api/jadwalHarian")
+			axios.post("https://gofit123.xyz/p3l_laravel/public/jadwalHarian")
 				.then(() => {
 					toast.success("Berhasil Generate Jadwal Harian !", {
 						timeout: 2000

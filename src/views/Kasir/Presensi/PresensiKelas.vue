@@ -53,7 +53,7 @@ export default {
 		let toast = useToast();
 
 		onMounted(() => {
-			axios.get('http://192.168.1.32:8000/api/presensiKelas')
+			axios.get('https://gofit123.xyz/p3l_laravel/public/presensiKelas')
 				.then(response => {
 					bookingKelas.value = response.data.data
 					console.log('response', bookingKelas.value);
@@ -64,7 +64,7 @@ export default {
 
 		//method delete
 		function presensiMember(id_presensi_kelas) {
-			axios.get(`http://192.168.1.32:8000/api/cetakStruk/${id_presensi_kelas}`)
+			axios.get(`https://gofit123.xyz/p3l_laravel/public/cetakStruk/${id_presensi_kelas}`)
 				.then((response) => {
 					console.log(response)
 					presensis.push(response.data.data);
@@ -114,7 +114,7 @@ export default {
 						popup.print();
 						popup.close();
 						presensis.length = 0
-					}else if(presensis.length > 0 && data.jenis == 'Paket'){
+					} else if (presensis.length > 0 && data.jenis == 'Paket') {
 						const printContents = `
 								<html>
 								<head>

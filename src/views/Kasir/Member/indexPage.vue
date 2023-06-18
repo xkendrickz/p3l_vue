@@ -78,7 +78,7 @@ export default {
 		})
 
 		onMounted(() => {
-			axios.get('http://192.168.1.32:8000/api/member')
+			axios.get('https://gofit123.xyz/p3l_laravel/public/member')
 				.then(response => {
 					member.value = response.data.data
 					console.log('response', member.value);
@@ -89,7 +89,7 @@ export default {
 
 		//method delete
 		function MemberDelete(id_member) {
-			axios.delete(`http://192.168.100.111/p3l/gopit_backend/public/member/${id_member}`)
+			axios.delete(`http://10.53.6.18/p3l/gopit_backend/public/member/${id_member}`)
 				.then(() => {
 					toast.error("Berhasil Hapus Member !", {
 						timeout: 2000
@@ -110,7 +110,7 @@ export default {
 		}
 
 		function generatePDF(id_member) {
-			axios.get(`http://192.168.1.32:8000/api/member/${id_member}`)
+			axios.get(`https://gofit123.xyz/p3l_laravel/public/member/${id_member}`)
 				.then((response) => {
 					members.push(response.data.data);
 					if (members.length > 0) {
